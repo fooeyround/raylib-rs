@@ -107,10 +107,10 @@ impl RaylibHandle {
     }
 
     #[inline]
-    pub fn update_camera_pro(&self, camera: &mut Camera3D, movement: Vector3, rotation: Vector3, zoom: i32) {
+    pub fn update_camera_pro(&self, camera: &mut Camera3D, movement: Vector3, rotation: Vector3, zoom: f32) {
         unsafe {
             let mut fficam: ffi::Camera3D = (*camera).into();
-            ffi::UpdateCameraPro(&mut fficam, movement, rotation, zoom);
+            ffi::UpdateCameraPro(&mut fficam, movement.into(), rotation.into(), zoom);
             *camera = fficam.into();
         }
     }
