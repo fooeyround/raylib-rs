@@ -79,6 +79,7 @@ pub struct RaylibBuilder {
     window_transparent: bool,
     msaa_4x_hint: bool,
     vsync_hint: bool,
+    mouse_passthrough: bool,
     width: i32,
     height: i32,
     title: String,
@@ -128,6 +129,11 @@ impl RaylibBuilder {
     /// Hints that vertical sync (VSync) should be enabled. The system's graphics drivers may override this setting.
     pub fn vsync(&mut self) -> &mut Self {
         self.vsync_hint = true;
+        self
+    }
+
+    pub fn mouse_passthrough(&mut self) -> &mut Self {
+        self.mouse_passthrough = true;
         self
     }
 
@@ -181,6 +187,9 @@ impl RaylibBuilder {
         }
         if self.vsync_hint {
             flags |= FLAG_VSYNC_HINT as u32;
+        }
+        if self.mouse_passthrough {
+            flags |= FLAG_WINDOW_MOUSE_PASSTHROUGH as u32;
         }
 
         unsafe {
