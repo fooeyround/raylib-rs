@@ -101,6 +101,15 @@ impl RaylibAudio {
         }
     }
 
+    /// Sets pan for a sound (`1.0` is base level).
+    #[inline]
+    pub fn set_sound_pan(&mut self, sound: &Sound, pan: f32) {
+        unsafe {
+            ffi::SetSoundPan(sound.0, pan);
+        }
+    }
+
+
     /// Starts music playing.
     #[inline]
     pub fn play_music_stream(&mut self, music: &mut Music) {
@@ -162,6 +171,16 @@ impl RaylibAudio {
             ffi::SetMusicPitch(music.0, pitch);
         }
     }
+
+
+    /// Sets pan for music (`1.0` is base level).
+    #[inline]
+    pub fn set_music_pan(&mut self, music: &mut Music, pan: f32) {
+        unsafe {
+            ffi::SetMusicPan(music.0, pan);
+        }
+    }
+
 
     /// Gets music time length in seconds.
     #[inline]
@@ -228,6 +247,15 @@ impl RaylibAudio {
             ffi::SetAudioStreamPitch(stream.0, pitch);
         }
     }
+
+    /// Sets pan for an audio stream. (`1.0` is base level).
+    #[inline]
+    pub fn set_audio_stream_pan(&mut self, stream: &mut AudioStream, pan: f32) {
+        unsafe {
+            ffi::SetAudioStreamPan(stream.0, pan);
+        }
+    }
+
 
     /// Sets pitch for audio stream (`1.0` is base level).
     #[inline]

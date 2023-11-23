@@ -192,6 +192,22 @@ impl WindowState {
     }
 
 
+    pub fn window_mouse_passthrough(&self) -> bool {
+        self.0 & (ffi::ConfigFlags::FLAG_WINDOW_MOUSE_PASSTHROUGH as i32) != 0
+    }
+    /// Set to allow transparent framebuffer
+    pub fn set_window_mouse_passthrough(mut self, enabled: bool) -> Self {
+        if enabled {
+            self.0 |= ffi::ConfigFlags::FLAG_WINDOW_MOUSE_PASSTHROUGH as i32;
+        } else {
+            self.0 &= !(ffi::ConfigFlags::FLAG_WINDOW_MOUSE_PASSTHROUGH as i32);
+        }
+        self
+    }
+
+
+
+
     pub fn window_highdpi(&self) -> bool {
         self.0 & (ffi::ConfigFlags::FLAG_WINDOW_HIGHDPI as i32) != 0
     }
@@ -207,6 +223,8 @@ impl WindowState {
         self
     }
 
+
+    /// This honestly should not be here, it is missleading. This won't have an effect post window creation.
     pub fn msaa(&self) -> bool {
         self.0 & (ffi::ConfigFlags::FLAG_MSAA_4X_HINT as i32) != 0
     }
