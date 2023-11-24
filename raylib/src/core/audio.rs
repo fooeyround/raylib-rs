@@ -101,7 +101,7 @@ impl RaylibAudio {
         }
     }
 
-    /// Sets pan for a sound (`0.0` is base level).
+    /// Sets pan for a sound (`0.5` is base center).
     #[inline]
     pub fn set_sound_pan(&mut self, sound: &Sound, pan: f32) {
         unsafe {
@@ -173,7 +173,7 @@ impl RaylibAudio {
     }
 
 
-    /// Sets pan for music (`0.0` is base level).
+    /// Sets pan for music (`0.5` is center).
     #[inline]
     pub fn set_music_pan(&mut self, music: &mut Music, pan: f32) {
         unsafe {
@@ -248,7 +248,7 @@ impl RaylibAudio {
         }
     }
 
-    /// Sets pan for an audio stream.(`0.0` is base level).
+    /// Sets pan for an audio stream.(`0.5` is center).
     #[inline]
     pub fn set_audio_stream_pan(&mut self, stream: &mut AudioStream, pan: f32) {
         unsafe {
